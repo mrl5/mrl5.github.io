@@ -1,3 +1,6 @@
+*.swp
+tags
+
 # https://raw.githubusercontent.com/github/gitignore/main/community/Golang/Hugo.gitignore
 /public/
 /resources/_gen/
