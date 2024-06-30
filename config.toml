@@ -1,4 +1,35 @@
-baseURL = "http://example.org/"
+baseURL = "https://mrl5.github.io/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "mrl5 home page"
 theme = "nightfall"
+
+[params]
+user = "mrl5"
+hostname = "github.io"
+  [params.author]
+    name = "Jakub Kołodziejczak"
+
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/mrl5"
+target = "_blank"
+aria = "GitHub Profile"
+
+[[params.social]]
+key = 1
+name = "twitter"
+url = "https://x.com/jk_mrl5"
+aria = "Twitter Profile"
+
+[[params.social]]
+key = 2
+name = "linkedin"
+url = "https://www.linkedin.com/in/9a177d16f0768546609dd8c813508e3c36a8cd1ada6bfb9f77168bae5d0e0b39/"
+aria = "LinkedIn Profile"
+
+[[params.social]]
+key = 3
+name = "ko-fi"
+url = "https://ko-fi.com/jk_mrl5"
+aria = "Ko-fi Profile"
