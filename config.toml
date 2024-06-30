@@ -3,6 +3,12 @@ languageCode = "en-us"
 title = "mrl5 home page"
 theme = "nightfall"
 
+[menu]
+  [[menu.header]]
+    name = "about"
+    weight = 1
+    url = "about"
+
 [params]
 user = "mrl5"
 hostname = "github.io"
