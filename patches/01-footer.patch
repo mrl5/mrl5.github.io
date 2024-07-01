@@ -1,0 +1,16 @@
+diff --git a/themes/nightfall/layouts/partials/footer.html b/themes/nightfall/layouts/partials/footer.html
+index 30a7c1b..75837fe 100644
+--- a/themes/nightfall/layouts/partials/footer.html
++++ b/themes/nightfall/layouts/partials/footer.html
+@@ -3,9 +3,7 @@
+         <span>{{ . | safeHTML }}</span>
+     {{ else }}
+         <span>
+-            © {{ now.Format "2006" }} {{ .Site.Params.author.name }}, {{ i18n "powered_by" }}
+-            <a href="https://gohugo.io" class="footerLink">Hugo</a> {{ i18n "and" }}
+-            <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> {{ i18n "theme" }}
++            © {{ now.Format "2006" }} {{ .Site.Params.author.name }}
+         </span>
+     {{ end }}
+ </footer>
+\ No newline at end of file

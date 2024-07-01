@@ -1,0 +1,12 @@
+diff --git a/themes/nightfall/layouts/index.html b/themes/nightfall/layouts/index.html
+index bab0860..d9e5d20 100644
+--- a/themes/nightfall/layouts/index.html
++++ b/themes/nightfall/layouts/index.html
+@@ -20,6 +20,7 @@
+                 <div class="indexWrapper">
+                     <div>
+                         <h1 class="indexHeader">{{ .Site.Params.author.name }}</h1>
++                        <h3>{{ .Site.Params.Description }}</h3>
+                     </div>
+                     {{ if isset .Site.Params "social" }}
+                         {{ partial "social.html" . }}

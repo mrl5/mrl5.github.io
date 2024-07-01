@@ -16,30 +16,37 @@ theme = "nightfall"
 [params]
 user = "mrl5"
 hostname = "github.io"
+description = "A pragmatic software engineer."
   [params.author]
     name = "Jakub Kołodziejczak"
 
 [[params.social]]
 key = 0
-name = "github"
+name = "GitHub"
 url = "https://github.com/mrl5"
 target = "_blank"
 aria = "GitHub Profile"
 
 [[params.social]]
 key = 1
-name = "twitter"
+name = "Twitter"
 url = "https://x.com/jk_mrl5"
 aria = "Twitter Profile"
 
 [[params.social]]
 key = 2
-name = "linkedin"
+name = "LinkedIn"
 url = "https://www.linkedin.com/in/9a177d16f0768546609dd8c813508e3c36a8cd1ada6bfb9f77168bae5d0e0b39/"
 aria = "LinkedIn Profile"
 
 [[params.social]]
 key = 3
-name = "ko-fi"
+name = "Exercism"
+url = "https://exercism.org/profiles/mrl5/testimonials"
+aria = "Exercism Profile"
+
+[[params.social]]
+key = 4
+name = "Ko-fi"
 url = "https://ko-fi.com/jk_mrl5"
 aria = "Ko-fi Profile"
