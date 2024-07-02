@@ -1,4 +1,4 @@
-baseURL = "https://mrl5.github.io/"
+baseURL = "https://tuxnet.dev/"
 languageCode = "en-us"
 title = "mrl5 home page"
 theme = "nightfall"
@@ -15,7 +15,7 @@ theme = "nightfall"
 
 [params]
 user = "mrl5"
-hostname = "github.io"
+hostname = "tuxnet.dev"
 description = "A pragmatic software engineer."
   [params.author]
     name = "Jakub Kołodziejczak"
