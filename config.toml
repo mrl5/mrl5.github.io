@@ -6,8 +6,12 @@ theme = "nightfall"
 [menu]
   [[menu.header]]
     name = "about"
-    weight = 1
+    weight = 2
     url = "about"
+  [[menu.header]]
+    name = "blog"
+    weight = 1
+    url = "blog"
   [[menu.header]]
     name = "contrib"
     weight = 0
