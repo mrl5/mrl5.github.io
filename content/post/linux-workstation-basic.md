@@ -52,7 +52,7 @@ Now we can also add `Microsoft Store` to the mix and run updates there.
 This is probably the most relevant part -- perhaps we could use
 [fwupd](https://fwupd.org/) during LiveCD install, however there is a chance
 that on windows whole process is be more user friendly and maybe even more
-drivers/firmware will be updated compared to running.
+drivers/firmware will be updated.
 
 Let's run Lenovo tool -- for my case it's called `Lenovo Commercial Vantage`.
 Running update there will most likely update BIOS and some other firmware. Per
@@ -80,8 +80,7 @@ This steps are needed for so that Linux can see and read disk(s).
 
 ### Download and verify
 
-Download your favorite GNU/Linux distribution. In this example we will use Ubuntu
-* download from https://releases.ubuntu.com/
+Download your favorite GNU/Linux distribution
 * after download compare SHA256 checksums
 
 ### Create bootable USB
@@ -95,6 +94,7 @@ oneliner:
 ```console
 # image must be written to the whole-disk device and not a partition, e.g.
 # /dev/sdb and not /dev/sdb1
+
 sudo cp -v your-livecd.iso /dev/sdX && sudo sync
 ```
 
@@ -107,8 +107,8 @@ sudo cp -v your-livecd.iso /dev/sdX && sudo sync
 
 You can now proceed with the tutorial of your favorite GNU/Linux distro. If
 there is any Security guideline related to setting up Linux Worstation make
-sure to follow it. Some possible example would be to use full disk encryption
-(FDE) and setting basic firewall rules.
+sure to follow it. Some possible example would be to use disk encryption or
+setting basic firewall rules.
 
 ## Post install steps
 
@@ -116,6 +116,7 @@ Here are recommended steps that are not documented in this document.
 
 1. Consider additional BIOS and boot hardening
 2. Consider additional GNU/Linux hardening
+3. Prefer hibernation over suspension
 
 ## Summary
 
