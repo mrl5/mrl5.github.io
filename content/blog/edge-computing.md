@@ -2,6 +2,7 @@
 author = "Jakub Kołodziejczak"
 title = "my journey with edge computing"
 date = "2021-06-03"
+aliases = ["20210603_edge-computing"]
 tags = [
     "cloudflare",
     "edge",

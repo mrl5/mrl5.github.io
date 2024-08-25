@@ -2,6 +2,7 @@
 author = "Jakub Kołodziejczak"
 title = "my take on choosing open source license"
 date = "2022-01-16"
+aliases = ["20220116_open-source-licenses"]
 tags = [
     "opensource",
     "license",

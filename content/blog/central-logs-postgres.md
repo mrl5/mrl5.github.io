@@ -2,6 +2,7 @@
 author = "Jakub Kołodziejczak"
 title = "system logs aggregation with postgres"
 date = "2024-07-14"
+aliases = ["20240712_central-logs-postgres"]
 tags = [
     "logs",
     "syslog",
