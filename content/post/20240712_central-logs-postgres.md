@@ -170,7 +170,7 @@ CREATE TABLE logs.syslog (
     PRIMARY KEY (id, device_reported_time)
 );
 CREATE INDEX ON logs.syslog USING BTREE (pgsql_user);
-CREATE INDEX ON logs.syslog USING BRIN (device_reported_time);
+CREATE INDEX ON logs.syslog USING BTREE (device_reported_time DESC);
 ```
 
 "Why composite primary key", you might ask. The reason is table partitioning
@@ -188,21 +188,9 @@ speech](https://youtu.be/9_pbEVeMEB4?t=1082) that reduce size of the table.
 Last but not least indexes. It's probably good idea to have an ability for
 performant filtering by the log source, hence index on `pgsql_user`. It would
 be also nice to have a fast timerange filter (e.g. logs from last 24 hours) -
-notice that I'm using `BRIN` index. Rationale for using BRIN is nicely
-described in [this
-article](https://www.crunchydata.com/blog/postgres-indexing-when-does-brin-win)
-but also [postgres official
-docs](https://www.postgresql.org/docs/current/indexes-types.html#INDEXES-TYPES-BRIN)
-are pretty clear about the appliance:
-```
-BRIN indexes (a shorthand for Block Range INdexes) store summaries about the
-values stored in consecutive physical block ranges of a table. Thus, they are
-most effective for columns whose values are well-correlated with the physical
-order of the table rows.
-```
-
-Seams like a perfect match for insert only table that will be filtered by the
-time range.
+notice that additionally I've added `DESC` keyword. It will speed up queries
+that show most recent entry as the first one (we will need it in dashboard
+view a bit later).
 
 Aaaaand one more security layer that will guarantee
 [non-repudiation](https://csrc.nist.gov/glossary/term/non_repudiation):
@@ -446,7 +434,7 @@ FROM
     LEFT JOIN logs.syslog_prio p ON l.priority = p.id
     LEFT JOIN logs.syslog_facility f ON l.facility = f.id
 ORDER BY
-    (l.id, l.device_reported_time);
+    l.device_reported_time DESC;
 ```
 Notice the `WITH (security_invoker = TRUE)` part. Views in postgres by default
 are executed with privileges of the owner. [It was introduced in PostgreSQL
