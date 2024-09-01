@@ -78,8 +78,10 @@ For free ones, I'd limit my choice to [Supabase](https://supabase.com/),
 
 With Neon you wont be able to use `pg_cron` extension ([as per their
 documentation](https://neon.tech/docs/extensions/pg-extensions#extension-support-notes)).
-`pg_cron` comes handy with log retention but you don't need it if you're ok
-with doing this chore manually (more about log retention a bit later).
+`pg_cron` comes handy with log retention (more about log retention a bit
+later). However you don't need it if you're ok with doing this chores manually
+or running it outside of database. What's worth noting though, you get unique
+features like scaling to zero, autoscaling or instant branching.
 
 Tembo seams to be a great fit (not only because they have a dedicated
 [timeseries stack](https://tembo.io/docs/product/stacks/analytical/timeseries)
@@ -168,7 +170,7 @@ CREATE TABLE logs.syslog (
     pgsql_user text DEFAULT CURRENT_USER,
     message text,
 
-    PRIMARY KEY (id, device_reported_time)
+    PRIMARY KEY (device_reported_time, id)
 );
 CREATE INDEX ON logs.syslog USING BTREE (pgsql_user);
 CREATE INDEX ON logs.syslog USING BTREE (device_reported_time DESC);
@@ -335,12 +337,16 @@ module (load="ompgsql")
     pass="..."
     db="logs"
     template="SqlSyslog"
+    action.resumeRetryCount="-1"
 )
 ```
 `date-rfc3339` part makes sure that timezone is not lost. This is important
 with logs aggregation, it's a good habit to always use UTC timezone. Checkout
 [this article](https://graylog.org/post/time-zones-a-loggers-worst-nightmare/)
 if you need to be convinced.
+
+`action.resumeRetryCount="-1"` part makes sure that on delivery failure rsyslog
+will infinitely try to deliver them.
 
 Note that you will need to replace the `...` string with correct values. Also
 if your postgres provider doesn't come with secure connection by default, you
@@ -353,7 +359,8 @@ For example:
 *.* action(
     type="ompgsql"
     conninfo="postgresql://USER:PASSWORD@HOSTNAME:PORT/logs?sslmode=require"
-    template="sql-syslog"
+    template="SqlSyslog"
+    action.resumeRetryCount="-1"
 )
 ```
 
@@ -502,7 +509,7 @@ SELECT * FROM dashboard;
  home_rpi | rpi       | 2024-07-14 14:38:17+00 | NOTICE   | authpriv |      kuba : TTY=pts/0 ; PWD=/home/kuba ; USER=root ; COMMAND=/usr/bin/echo 'You\'ve got PWN3D'
  home_rpi | rpi       | 2024-07-14 14:38:17+00 | INFO     | authpriv |  pam_unix(sudo:session): session opened for user root(uid=0) by kuba(uid=1000)
  home_rpi | rpi       | 2024-07-14 14:38:17+00 | INFO     | authpriv |  pam_unix(sudo:session): session closed for user root
-(6 rows)
+(9 rows)
 
 ```
 

@@ -11,13 +11,13 @@ tags = [
 +++
 
 This article describes the process for Lenovo ThinkPad X1 Carbon Gen 11 but I
-think it should be similar to other Lenovo laptops as well. It should be also
+think it should be similar to other Lenovo laptops as well. It should be
 applicable to laptops from other vendors but
 [YMMV](https://dictionary.cambridge.org/dictionary/english/ymmv).
 
 ## How to choose Linux compatible laptop
 
-Some models are well supported by Linux, other require propriatary software and
+Some models are well supported by Linux, other require proprietary software and
 there might be some models that will cause you some headaches. For checking
 compatibility you might be interested in:
 * https://ubuntu.com/certified/laptops
@@ -34,7 +34,7 @@ vendors. Check:
 
 ## Leverage pre-installed Windows
 
-**DISCLAIMER** -- this section will be strongly based on this references:
+**DISCLAIMER** -- this section is strongly based on this references:
 * https://news.ycombinator.com/item?id=35324961
 * https://www.theregister.com/2023/03/10/thinkpad_x1c_g10_linux/
 * https://www.theregister.com/2022/07/22/linux_nonapproved_laptop
@@ -51,11 +51,11 @@ Now we can also add `Microsoft Store` to the mix and run updates there.
 
 This is probably the most relevant part -- perhaps we could use
 [fwupd](https://fwupd.org/) during LiveCD install, however there is a chance
-that on windows whole process is be more user friendly and maybe even more
+that on windows whole process would be more user friendly and maybe even more
 drivers/firmware will be updated.
 
 Let's run Lenovo tool -- for my case it's called `Lenovo Commercial Vantage`.
-Running update there will most likely update BIOS and some other firmware. Per
+Running update will most likely update BIOS and some other firmware. Per
 analogy to Windows Updates, you should re-run this after reboot couple times.
 
 ### Windows recovery
@@ -68,13 +68,13 @@ drive](https://support.microsoft.com/en-us/windows/create-a-recovery-drive-abb46
 Let's ensure that:
 1. Bitlocker or other windows encryption is disabled. Go to `BitLocker Drive
    Encryption`, if it's enabled then choose `Turn off BitLocker`. Now you need
-   to wait until Decryption finishes.
+   to wait until decryption finishes.
 2. Secure Boot is disabled (it's broken anyway
    [ref](https://arstechnica.com/security/2024/07/secure-boot-is-completely-compromised-on-200-models-from-5-big-device-makers/)).
    You can find some instructions here
    https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/disabling-secure-boot?view=windows-11#disable-secure-boot
 
-This steps are needed for so that Linux can see and read disk(s).
+This steps are needed so that Linux can see and read disk(s).
 
 ## Linux LiveCD
 
@@ -106,7 +106,7 @@ sudo cp -v your-livecd.iso /dev/sdX && sudo sync
 4. Choose your bootable media
 
 You can now proceed with the tutorial of your favorite GNU/Linux distro. If
-there is any Security guideline related to setting up Linux Worstation make
+there is any security guideline related to setting up Linux Worstation make
 sure to follow it. Some possible example would be to use disk encryption or
 setting basic firewall rules.
 
@@ -125,8 +125,8 @@ We learned how to:
   pre-installed Windows features
 * create Windows Recoverable Disk
 * prepare Laptop for GNU/Linux installation
-* create LiveCD that can be used for installation
-* remember about additional security configurations
+* create LiveCD used for installation
+* consider additional security configurations
 
-That's it folks, stay tuned for next part where additional security hardening
-will be discussed.
+That's it folks, stay tuned for next part where additional security
+configuration will be discussed.
