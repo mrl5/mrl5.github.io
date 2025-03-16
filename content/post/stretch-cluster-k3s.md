@@ -174,7 +174,9 @@ local-rpi                Ready      <none>                 129m   v1.31.6+k3s1
 
 Now we need to make sure if there are no networking issues between the nodes. I
 will reuse the steps from previousely mentioned [Alex's
-blogpost](https://itnext.io/how-to-deploy-a-single-kubernetes-cluster-across-multiple-clouds-using-k3s-and-wireguard-a5ae176a6e81).
+blogpost](https://itnext.io/how-to-deploy-a-single-kubernetes-cluster-across-multiple-clouds-using-k3s-and-wireguard-a5ae176a6e81)
+but another valuable test is to use
+[Echo-Server](https://ealenn.github.io/Echo-Server/pages/quick-start/kubernetes.html)
 
 So in our Hetzner machine lets run:
 ```
