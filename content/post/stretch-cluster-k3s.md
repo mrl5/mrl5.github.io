@@ -61,15 +61,15 @@ Let's go with K3S -- it seems to be more popular nowadays.
 
 ### Entrypoint
 
-Because we don't want to expose too much to the internet let's have our ingress
-hosted on some cloud provider. There are a couple of budget options, let's name
-at least 3:
+Because we don't want to expose too much to the internet let's have public
+facing server hosted on some cloud provider. There are a couple of budget
+options, let's name at least 3:
 1. [Hetzner](https://www.hetzner.com/)
 2. [OVH](https://www.ovhcloud.com/)
 3. [Scaleway](https://www.scaleway.com)
 
-Let's go with Hetzner -- for ARM with 2vCPU, 4GB of RAM and IPv4 (currenlty) it
-costs [$4.59 monthly for European location](https://www.hetzner.com/cloud/).
+Let's go with Hetzner -- for ARM with 2 vCPUs, 4GB of RAM and IPv4 (currenlty)
+it costs [$4.59 monthly for European location](https://www.hetzner.com/cloud/).
 Not bad! We also get 40 GB of NVME SSD and [20 TB for outgoing
 traffic](https://docs.hetzner.com/robot/general/traffic/)
 
@@ -80,8 +80,9 @@ Hetzner and one Raspberry Pi. We can ssh to both of them and run commands as
 root. Both of our machines have Debian or Debian-derived distro (e.g. Ubuntu).
 On top of that we have an account on https://app.netbird.io/
 
-Please make sure that your Hetzner machine is behind firewall. Exposing
-Kubernetes control plane to the Big Scary Internet is a no-no.
+Please make sure that your Hetzner machine is behind firewall and only
+necessary ports are open. Exposing Kubernetes control plane to the Big Scary
+Internet is a no-no.
 
 ### Setup NetBird
 Let's generate NetBird setup keys -- we will need them to join our VPN mesh.
@@ -245,6 +246,6 @@ If you feel adventurous you can make your K3S cluster HA:
 
 ## Summary
 
-We've created our own, self-hoster Kubernetes cluster. We've spread the nodes
-between cloud and on-prem locations. We've learned how NetBird can help with
-security and connectivity.
+We've created our own, self-hosted Kubernetes cluster. We've spread the nodes
+between cloud and on-prem locations. We've leveraged WireGuard based VPN for
+connectivity and increased security.
