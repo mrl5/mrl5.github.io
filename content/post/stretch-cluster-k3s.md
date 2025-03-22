@@ -39,14 +39,16 @@ have couple of options to achieve that:
    * adding new nodes comes with some overhead, because public keys would need
      to be shared between all nodes
 2. [NetBird](https://netbird.io/) is an open source overlay network that's
-   using WireGuard under the hood. It has many nice feature but the one that we
+   using WireGuard under the hood. It has many nice features but the one that we
    care the most now is ability to automatically create point-to-point
    WireGuard tunnels between the nodes
 3. [Tailscale](https://tailscale.com/) probably the most popular WireGuard VPN
-   nowadays. Some of its components are open source.
+   nowadays. Some of its components are open source. Feature-wise it's very
+   similar to NetBird.
 
 Let's go with NetBird. Tailscale has pretty good support and various usecases
-are well documented. Not a case with NetBrid that I happen to use.
+are well documented. Not a case with NetBrid that I happen to use. Fun fact is
+that NetBrid uses kernel WireGuard, while Tailscale uses userland WireGuard.
 
 ### Kubernetes distro
 
@@ -83,6 +85,30 @@ On top of that we have an account on https://app.netbird.io/
 Please make sure that your Hetzner machine is behind firewall and only
 necessary ports are open. Exposing Kubernetes control plane to the Big Scary
 Internet is a no-no.
+
+On Hetzner firewall I recommend opening `ICMP` (for pings) and `51820/udp`. The
+latter is not required in order to connect via SSH but I discovered that when
+it's not open then:
+1. I see this in `/var/log/netbird/client.log`
+```
+client/internal/peer/conn.go:533: send offer to peer
+client/internal/peer/conn.go:261: OnRemoteAnswer, status ICE: Disconnected, status relay: Connected
+client/internal/peer/handshaker.go:91: received connection confirmation, running version 0.38.2 and with remote WireGuard listen port 51820
+client/internal/peer/handshaker.go:79: wait for remote offer confirmation
+client/internal/peer/conn.go:533: send offer to peer
+client/internal/peer/conn.go:261: OnRemoteAnswer, status ICE: Disconnected, status relay: Connected
+client/internal/peer/handshaker.go:91: received connection confirmation, running version 0.38.2 and with remote WireGuard listen port 51820
+client/internal/peer/handshaker.go:79: wait for remote offer confirmation
+client/internal/peer/conn.go:533: send offer to peer
+```
+2. Which I correlated with ugly K3S behavior that was exhausting CPU resources
+   and producing this logs in `sudo journalctl -xeu k3s-agent.service`:
+```
+W0321 20:18:13.728945   10565 transport.go:356] Unable to cancel request for *otelhttp.Transport
+E0321 20:18:13.729070   10565 controller.go:195] "Failed to update lease" err="Put \"https://127.0.0.1:6444/apis/coordination.k8s.io/v1/namespaces/kube-node-lease/leases/debian?timeout=10s\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
+W0321 20:18:23.729523   10565 transport.go:356] Unable to cancel request for *otelhttp.Transport
+E0321 20:18:23.729601   10565 controller.go:195] "Failed to update lease" err="Put \"https://127.0.0.1:6444/apis/coordination.k8s.io/v1/namespaces/kube-node-lease/leases/debian?timeout=10s\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
+```
 
 ### Setup NetBird
 Let's generate NetBird setup keys -- we will need them to join our VPN mesh.
