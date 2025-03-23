@@ -73,7 +73,7 @@ options, let's name at least 3:
 Let's go with Hetzner -- for ARM with 2 vCPUs, 4GB of RAM and IPv4 (currenlty)
 it costs [$4.59 monthly for European location](https://www.hetzner.com/cloud/).
 Not bad! We also get 40 GB of NVME SSD and [20 TB for outgoing
-traffic](https://docs.hetzner.com/robot/general/traffic/)
+traffic](https://docs.hetzner.com/robot/general/traffic/).
 
 ## Implementation
 
@@ -89,7 +89,7 @@ Internet is a no-no.
 On Hetzner firewall I recommend opening `ICMP` (for pings) and `51820/udp`. The
 latter is not required in order to connect via SSH but I discovered that when
 it's not open then:
-1. I see this in `/var/log/netbird/client.log`
+1. I see this in `/var/log/netbird/client.log` on my Raspberry
 ```
 client/internal/peer/conn.go:533: send offer to peer
 client/internal/peer/conn.go:261: OnRemoteAnswer, status ICE: Disconnected, status relay: Connected
@@ -102,7 +102,8 @@ client/internal/peer/handshaker.go:79: wait for remote offer confirmation
 client/internal/peer/conn.go:533: send offer to peer
 ```
 2. Which I correlated with ugly K3S behavior that was exhausting CPU resources
-   and producing this logs in `sudo journalctl -xeu k3s-agent.service`:
+   on Hetzner and producing this logs in `sudo journalctl -xeu
+   k3s-agent.service` on Raspberry:
 ```
 W0321 20:18:13.728945   10565 transport.go:356] Unable to cancel request for *otelhttp.Transport
 E0321 20:18:13.729070   10565 controller.go:195] "Failed to update lease" err="Put \"https://127.0.0.1:6444/apis/coordination.k8s.io/v1/namespaces/kube-node-lease/leases/debian?timeout=10s\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
@@ -272,6 +273,8 @@ ingress) works perfectly.
 If you feel adventurous you can make your K3S cluster HA:
 * https://docs.k3s.io/datastore/ha
 * https://docs.k3s.io/datastore/ha-embedded
+
+For further reading I also recommend https://rpi4cluster.com/
 
 ## Summary
 
