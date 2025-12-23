@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="tuxnet">
+  <div class="index-content framed">
+    <h1 id="welcome">Welcome!</h1>
+    <p>
+      My name is Jakub, I'm a software engineer and a long time open source enthusiast.
+    </p>
+    <p>
+    <img class="bert" src="/img/IMG_4717.JPG"></img>
+    </p>
+    <p>
+      Check out my profiles at <a href="https://github.com/mrl5">GitHub</a>
+      and <a
+      href="https://www.linkedin.com/in/9a177d16f0768546609dd8c813508e3c36a8cd1ada6bfb9f77168bae5d0e0b39/">LinkedIn</a>.
+    </p>
+  </div>
+  
+  <div class="posts">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>
+
+
+<style>
+.bert {
+  margin: auto;
+  width: 70%;
+}
+</style>
+

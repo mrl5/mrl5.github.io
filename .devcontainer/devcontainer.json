@@ -1,0 +1,6 @@
+{
+  "dockerFile": "Dockerfile",
+  "extensions": [],
+  "forwardPorts": [4321], // forward ports as needed
+  "runArgs": ["--name", "tuxnetdev"],
+}
