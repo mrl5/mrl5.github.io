@@ -1,13 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import umami from "@yeskunall/astro-umami";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tuxnet.dev',
   // Only use base path in production (GitHub Pages)
   base: '/',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+    umami({ id: '7335aa32-d766-46d9-8b02-42c8b14cc77a' }),
+  ],
   markdown: {
     shikiConfig: {
       theme: 'css-variables',
