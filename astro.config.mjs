@@ -20,6 +20,8 @@ export default defineConfig({
     },
   },
   redirects: {
+    '/post': '/posts',
+    '/blog': '/posts',
     '/post/[...slug]': '/posts/[...slug]',
     '/blog/[...slug]': '/posts/[...slug]',
     '/post/20240712_central-logs-postgres': '/posts/central-logs-postgres', // https://news.ycombinator.com/item?id=40961947

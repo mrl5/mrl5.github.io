@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim as node
+FROM node:24-trixie-slim as node
 FROM debian:13
 
 ENV DEBIAN_FRONTEND=noninteractive
