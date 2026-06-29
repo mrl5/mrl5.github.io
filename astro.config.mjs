@@ -14,8 +14,8 @@ export default defineConfig({
     umami({
       id: 'e90f2f22-4978-49dd-af2a-77e0ad3166fa',
       hostUrl: 'https://api.tuxnet.dev/stats',
-      endpointUrl: 'https://api.tuxnet.dev',
-      trackerScriptName: 'stats/script.js'
+      endpointUrl: 'https://tuxnet.dev',
+      trackerScriptName: 'script.js'
     }),
   ],
   markdown: {
