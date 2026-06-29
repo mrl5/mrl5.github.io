@@ -10,7 +10,6 @@ export default defineConfig({
   base: '/',
   integrations: [
     sitemap(),
-    umami({ id: '7335aa32-d766-46d9-8b02-42c8b14cc77a' }),
     umami({
       id: 'e90f2f22-4978-49dd-af2a-77e0ad3166fa',
       hostUrl: 'https://api.tuxnet.dev/stats',
