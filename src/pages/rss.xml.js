@@ -4,8 +4,8 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const posts = await getCollection('posts');
   return rss({
-    title: 'Astro Terminal Theme',
-    description: 'A terminal-inspired theme for Astro',
+    title: 'tuxnet.dev',
+    description: 'Homepage, bio and blog',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
