@@ -258,3 +258,6 @@ definitions in our nginx configs.
 We've learned how to securely set up TLS certificates for internal services
 without creating TLS issues for http clients downstream. All thanks to
 split-horizon DNS, WAF and ACME protocol. All for free!
+
+## HN comments
+Available at https://news.ycombinator.com/item?id=48846995
