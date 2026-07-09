@@ -14,6 +14,10 @@ tags: [
 ]
 ---
 
+**UPDATE 2026-07-09**: if you want to use different CNI I recommend Cilium.
+Check https://gist.github.com/mrl5/413727cde78afee1e7dbdc594788f2f3 for more
+details.
+
 So I want to have my self-hosted Kubernetes cluster. I want to have more than
 one node with as little budget as possible. I want to have nodes in different
 geographical locations. I don't want to expose my nodes to the Big Scary
