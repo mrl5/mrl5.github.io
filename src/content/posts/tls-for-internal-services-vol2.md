@@ -95,7 +95,7 @@ Either way, user [nijave wrote a
 comment](https://news.ycombinator.com/item?id=48849029) that resonates with me:
 > Removing attack surface is better than trying to hide it.
 
-If wildcard certificates reduces attack surface for your use case, then use it.
+If wildcard certificate reduces attack surface for your use case, then use it.
 Now we should have a better picture about trade-offs for both solutions and our
 toolbox is more complete.
 
