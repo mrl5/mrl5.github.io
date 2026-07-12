@@ -15,6 +15,10 @@ tags: [
 ]
 ---
 
+**UPDATE 2026-07-12**: Make sure to check a follow-up article -- [TLS
+certificates for internal services done
+SIMPLER](/posts/tls-for-internal-services-vol2)
+
 Title is a bit clickbait-y -- YMMV, but let me explain why I think "this is the
 way". Let's start with a simple example -- we have a server which hosts bunch
 of HTTP services. Some of those services are external, others internal. In
